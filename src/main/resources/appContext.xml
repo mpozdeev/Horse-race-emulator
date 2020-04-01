@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    Breeds-->
+    <bean id="breedKg" class="home.maksim.race.data.Breed">
+        <constructor-arg value="Конёк-горбунок"/>
+    </bean>
+
+    <bean id="breedBz" class="home.maksim.race.data.Breed">
+        <constructor-arg index="0" value="Борзая"/>
+        <constructor-arg index="1" value="45"/>
+    </bean>
+
+    <bean id="breedMu" class="home.maksim.race.data.Breed">
+        <constructor-arg index="0" value="Мустанг"/>
+        <constructor-arg index="1" value="50"/>
+    </bean>
+
+    <bean id="breedAr" class="home.maksim.race.data.Breed">
+        <constructor-arg index="0" value="Арабская"/>
+        <constructor-arg index="1" value="55"/>
+    </bean>
+
+<!--    Riders-->
+    <bean id="rider1" class="home.maksim.race.data.Rider">
+        <constructor-arg index="0" value="riderA"/>
+    </bean>
+
+    <bean id="rider2" class="home.maksim.race.data.Rider">
+        <constructor-arg index="0" value="riderB"/>
+        <constructor-arg index="1" value="3"/>
+    </bean>
+
+    <bean id="rider3" class="home.maksim.race.data.Rider">
+        <constructor-arg index="0" value="riderC"/>
+        <constructor-arg index="1" value="6"/>
+    </bean>
+
+    <bean id="rider4" class="home.maksim.race.data.Rider">
+        <constructor-arg index="0" value="riderD"/>
+        <constructor-arg index="1" value="9"/>
+    </bean>
+
+<!--    Horse-->
+    <bean id="horseSl" class="home.maksim.race.data.Horse">
+        <constructor-arg index="0" value="Слоули"/>
+        <constructor-arg index="1" ref="breedKg"/>
+        <constructor-arg index="2" ref="rider3"/>
+    </bean>
+
+    <bean id="horseLc" class="home.maksim.race.data.Horse">
+        <constructor-arg index="0" value="Счастливчик"/>
+        <constructor-arg index="1" ref="breedMu"/>
+        <constructor-arg index="2" ref="rider4"/>
+        <constructor-arg index="3" value="2"/>
+    </bean>
+
+    <bean id="horseMl" class="home.maksim.race.data.Horse">
+        <constructor-arg index="0" value="Мистер Л"/>
+        <constructor-arg index="1" ref="breedBz"/>
+        <constructor-arg index="2" ref="rider1"/>
+        <constructor-arg index="3" value="4"/>
+    </bean>
+
+    <bean id="horseCh" class="home.maksim.race.data.Horse">
+        <constructor-arg index="0" value="Чемпион"/>
+        <constructor-arg index="1" ref="breedAr"/>
+        <constructor-arg index="2" ref="rider2"/>
+        <constructor-arg index="3" value="6"/>
+    </bean>
+
+<!--    Race-->
+    <bean id="race" class="home.maksim.race.data.Race" >
+        <constructor-arg index="0" value="2500"/>
+        <constructor-arg index="1">
+            <list>
+                <ref bean="horseLc" />
+                <ref bean="horseMl" />
+                <ref bean="horseCh"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+</beans>
