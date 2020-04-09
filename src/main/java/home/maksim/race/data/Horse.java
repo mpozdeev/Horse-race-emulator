@@ -8,13 +8,20 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(of = "nameHorse")
 public class Horse {
     private String nameHorse;
     private Breed breed;
     private Rider rider;
     private int experience; // 0 - newbie .. 10 - professional
     private double speed; // speed = Breed.speed + Rider.experience + Horse.experience
+
+    public Horse() {
+    }
+
+    public Horse(String nameHorse) {
+        this.nameHorse = nameHorse;
+    }
 
     public Horse(String nameHorse, Breed breed, Rider rider) {
         this.nameHorse = nameHorse;

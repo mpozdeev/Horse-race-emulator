@@ -30,12 +30,7 @@ public class HorseServiceImpl implements HorseService {
         this.horses = horses;
     }
 
-    @Override
-    public Horse[] getRaceHorses() {
-        return pickHorsesRandom(horses, breeds, riders);
-    }
-
-    public Horse[] pickHorsesRandom(Horse[] arrayHorses, Breed[] arrayBreeds, Rider[] arrayRiders) {
+    public static Horse[] pickHorsesRandom(Horse[] arrayHorses, Breed[] arrayBreeds, Rider[] arrayRiders) {
         List<Horse> listHorses = new ArrayList<>();
         List<Breed> listBreeds = new ArrayList<>();
         List<Rider> listRiders = new ArrayList<>();
