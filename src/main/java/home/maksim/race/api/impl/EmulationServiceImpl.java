@@ -47,7 +47,7 @@ public class EmulationServiceImpl implements EmulationService {
         boolean quite = true;
         while (quite) {
             System.out.println("----------------------------------------");
-            System.out.println("Для выхода вместо ставки введите: exit");
+            System.out.println("Для выхода, вместо ставки, введите: exit");
             System.out.print("Сделайте ставку: ");
             String name = "";
             try {
@@ -87,16 +87,16 @@ public class EmulationServiceImpl implements EmulationService {
                 }
                 int j = 1;
                 for (Horse horse : listHorses) {
-                    System.out.print(j + ": " + horse.getNameHorse() + ", ");
+                    System.out.print("Отметка " + (i+1) + ": " + j + ": " + horse.getNameHorse() + ", ");
                     j++;
                 }
                 System.out.println();
             }
 
             if (betName.equals(listHorses.get(0).getNameHorse()) || betName.equals(listHorses.get(0).getRider().getName()))
-                System.out.println("Ваша ставка выиграла");
+                System.out.println("Ваша ставка " + betName + " выиграла");
             else {
-                System.out.println("Ваша ставка проиграла");
+                System.out.println("Ваша ставка " + betName + " проиграла");
             }
         }
 
