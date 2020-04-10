@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--    Breeds-->
+    <bean id="breedKg" class="home.maksim.race.data.Breed">
+        <constructor-arg value="Конёк-горбунок"/>
+    </bean>
+
+    <bean id="breedBz" class="home.maksim.race.data.Breed">
+        <constructor-arg index="0" value="Борзая"/>
+        <constructor-arg index="1" value="45"/>
+    </bean>
+
+    <bean id="breedMu" class="home.maksim.race.data.Breed">
+        <constructor-arg index="0" value="Мустанг"/>
+        <constructor-arg index="1" value="50"/>
+    </bean>
+
+    <bean id="breedAr" class="home.maksim.race.data.Breed">
+        <constructor-arg index="0" value="Арабская"/>
+        <constructor-arg index="1" value="55"/>
+    </bean>
+
+    <!--    Riders-->
+    <bean id="rider1" class="home.maksim.race.data.Rider">
+        <constructor-arg index="0" value="riderA"/>
+    </bean>
+
+    <bean id="rider2" class="home.maksim.race.data.Rider">
+        <constructor-arg index="0" value="riderB"/>
+        <constructor-arg index="1" value="3"/>
+    </bean>
+
+    <bean id="rider3" class="home.maksim.race.data.Rider">
+        <constructor-arg index="0" value="riderC"/>
+        <constructor-arg index="1" value="6"/>
+    </bean>
+
+    <bean id="rider4" class="home.maksim.race.data.Rider">
+        <constructor-arg index="0" value="riderD"/>
+        <constructor-arg index="1" value="9"/>
+    </bean>
+
+    <!--    Horse-->
+    <bean id="horseSl" class="home.maksim.race.data.Horse">
+        <property name="nameHorse" value="Слоули"/>
+        <property name="experience" value="2"/>
+    </bean>
+
+    <bean id="horseLc" class="home.maksim.race.data.Horse">
+        <constructor-arg value="Счастливчик"/>
+    </bean>
+
+    <bean id="horseMl" class="home.maksim.race.data.Horse">
+        <property name="nameHorse" value="Мистер Л"/>
+        <property name="experience" value="4"/>
+    </bean>
+
+    <bean id="horseCh" class="home.maksim.race.data.Horse">
+        <constructor-arg value="Чемпион"/>
+    </bean>
+
+    <!--    HorseServiceImpl-->
+    <bean id="horseServiceImpl" class="home.maksim.race.api.impl.HorseServiceImpl"
+          factory-method="pickHorsesRandom">
+        <constructor-arg index="0" type="home.maksim.race.data.Horse[]">
+            <list>
+                <ref bean="horseCh"/>
+                <ref bean="horseMl"/>
+                <ref bean="horseLc"/>
+                <ref bean="horseSl"/>
+            </list>
+        </constructor-arg>
+        <constructor-arg index="1" type="home.maksim.race.data.Breed[]">
+            <list>
+                <ref bean="breedMu"/>
+                <ref bean="breedBz"/>
+                <ref bean="breedAr"/>
+                <ref bean="breedKg"/>
+            </list>
+        </constructor-arg>
+        <constructor-arg index="2" type="home.maksim.race.data.Rider[]">
+            <list>
+                <ref bean="rider1"/>
+                <ref bean="rider2"/>
+                <ref bean="rider3"/>
+                <ref bean="rider4"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <!--    RaceServicesImpl-->
+    <bean id="raceServicesImpl" class="home.maksim.race.api.impl.RaceServicesImpl">
+        <property name="distance" value="1500"/>
+        <property name="horses" ref="horseServiceImpl"/>
+    </bean>
+
+    <bean id="emulationService" class="home.maksim.race.api.impl.EmulationServiceImpl">
+        <property name="raceService" ref="raceServicesImpl"/>
+    </bean>
+
+    <!--    Race-->
+    <bean id="raceService" class="home.maksim.race.api.impl.RaceServicesImpl">
+        <constructor-arg index="0" value="1500"/>
+        <constructor-arg index="1">
+            <list>
+                <ref bean="horseLc"/>
+                <ref bean="horseMl"/>
+                <ref bean="horseCh"/>
+                <ref bean="horseSl"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+</beans>
